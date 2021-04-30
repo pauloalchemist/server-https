@@ -1,6 +1,7 @@
-import express from 'express'
-import https from 'https'
-import fs from 'fs'
+const express = require('express')
+const https = require('https')
+const fs = require('fs')
+const { insertUser } = require('./data/createTest.js')
 
 const port = process.env.PORT || 8080
 
@@ -13,6 +14,12 @@ const server = https.createServer({ key: key, cert: cert }, app)
 app.use(express.json())
 app.get('/', (req, res) => {
   res.json({ Servidor: 'rodando' })
+})
+
+app.post('/createuser', async (req, res) => {
+  const user = req.body
+  const newUser = await insertUser(user)
+  res.status(201).json(newUser.rows)
 })
 
 server.listen(port, () => {

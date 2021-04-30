@@ -1,4 +1,4 @@
-import { Client } from 'pg'
+const { Client } = require('pg')
 require('dotenv').config()
 
 const db = new Client({
@@ -11,4 +11,4 @@ db.connect()
 
 const query = (text, params) => db.query(text, params)
 
-export { query }
+module.exports = { query }
