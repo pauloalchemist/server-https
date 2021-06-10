@@ -1,3 +1,5 @@
+#! /usr/bin/env sh 
+
 read -p "Insira o nome: " name
 read -p "Insira o e-mail: " email
 
